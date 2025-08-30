@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  idtb_users: Int!
+  username: String!
+  name: String!
+  last_name: String!
+  cpf: String!
+  email: String!
+  phone: String!
+  status: Boolean!
+  first_access: Boolean!
+  last_login_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginResponse {
+  accessToken: String!
+  user: User!
+}
+
+type LogoutResponse {
+  message: String!
+}
+
+type Query {
+  users: [User!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  login(loginInput: LoginInput!, deviceName: String!): LoginResponse!
+  logout(logoutInput: LogoutInput!): LogoutResponse!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String
+  name: String!
+  last_name: String!
+  cpf: String!
+  email: String!
+  phone: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input LogoutInput {
+  id: Float!
+}
