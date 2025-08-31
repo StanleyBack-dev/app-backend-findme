@@ -40,6 +40,7 @@ dotenv.config();
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       playground: true,
+      path: '/',
       context: ({ req, res }) => ({ req, res }),
     }),
   ],
