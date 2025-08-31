@@ -5,8 +5,13 @@ import { Logs } from 'src/entities/logs_entities/logs.entity';
 import { Customers } from 'src/entities/customers_entities/customers.entity';
 import { Roles } from 'src/entities/roles_entities/roles.entity';
 import * as dotenv from 'dotenv';
+import * as path from 'path';
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'production'
+  ? '.env.production'
+  : '.env.development';
+
+dotenv.config({ path: path.resolve(process.cwd(), envFile) });
 
 const typeOrmConfig: DataSourceOptions = {
   type: 'postgres',
@@ -18,7 +23,7 @@ const typeOrmConfig: DataSourceOptions = {
   entities: [User, AuthSessionUser, Logs, Customers, Roles],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 };
 
 export default typeOrmConfig;
