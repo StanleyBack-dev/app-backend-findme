@@ -31,6 +31,8 @@ export class JwtAuthGuard implements CanActivate {
     const req = ctx.req;
     const token = req.cookies?.['access_token'];
 
+    console.log(token);
+
     if (!token) {
       await this.logsService.createLog({
         user: null,

@@ -1,26 +1,20 @@
-import { Resolver, Mutation, Args, Context } from '@nestjs/graphql';
-import { Throttle } from "@nestjs/throttler";
+import { Resolver, Mutation, Context } from '@nestjs/graphql';
+import { Throttle } from '@nestjs/throttler';
 import { Response } from 'express';
 import { UseInterceptors } from '@nestjs/common';
 import { LogoutLogInterceptor } from 'src/common/interceptors/logout.interceptors';
-import { LogoutInput } from './inputs/logout.input';
-import { LogoutResponse } from './inputs/logout.response';
+import { LogoutResponseDto } from 'src/dto/auth_dto/auth_dto_logout/auth.dto.logout.response';
 import { AuthLogoutService } from 'src/services/auth_services/auth.logout.service';
 
 @Resolver()
 export class AuthLogoutResolver {
-  constructor(
-    private readonly authLogoutService: AuthLogoutService,
-  ) {}
+  constructor(private readonly authLogoutService: AuthLogoutService) {}
 
   @Throttle({ logout: { limit: 5, ttl: 60000 } })
-  @Mutation(() => LogoutResponse)
+  @Mutation(() => LogoutResponseDto)
   @UseInterceptors(LogoutLogInterceptor)
-  async logout(
-    @Args("logoutInput") LogoutInput: LogoutInput,
-    @Context() context: { res: Response },
-  ): Promise<LogoutResponse> {
-
-    return this.authLogoutService.logout(LogoutInput, context.res);
+  async logout(@Context() context: { req: any; res: Response }): Promise<LogoutResponseDto> {
+    const userId = context.req.user.sub;
+    return this.authLogoutService.logout(userId, context.res);
   }
 }

@@ -22,7 +22,7 @@ export class LogsCreateService {
     operationName: string;
   }) {
     const log = this.logCreateRepo.create({
-      idtb_users: data.user?.idtb_users || null,
+      user: data.user ? { idtb_users: data.user.idtb_users } : undefined,
       action: data.action,
       description: data.description,
       ip_address: data.ipAddress,

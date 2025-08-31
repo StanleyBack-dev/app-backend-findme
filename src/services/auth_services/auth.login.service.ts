@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ComparePassword } from 'src/utils/hash.util';
 import { SetAuthCookies } from 'src/utils/cookies.util';
 import { LoginResquestDto } from 'src/dto/auth_dto/auth_dto_login/auth.dto.login.request';
+import { GetUsersDto } from 'src/dto/users_dto/users_dto_get/users.dto.get.response';
 import { UsersGetService } from '../users_services/users.get.service';
 import { AuthCreateSessionService } from './auth.create.session.service';
 import { UsersUpdateService } from '../users_services/users.update.service';
@@ -24,9 +25,9 @@ export class AuthLoginService {
     deviceName: string,
     res: Response,
   ) {
-    const { username, password, tenantId } = loginInput;
+    const { username, password } = loginInput;
 
-    const user = await this.usersGetService.getByUsernameAndCustomers(username, tenantId);
+    const user = await this.usersGetService.getByUsernameAndCustomers(username);
     if (!user) throw new UnauthorizedException('User not found');
 
     const valid = await ComparePassword(password, user.password);
@@ -73,7 +74,7 @@ export class AuthLoginService {
         tenantId: user.idtb_customers,
         username: user.username,
         role: user.role,
-      },
+      } as GetUsersDto,
     };
   }
 }

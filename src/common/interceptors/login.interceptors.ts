@@ -65,7 +65,9 @@ export class LogLoginInterceptor implements NestInterceptor {
     const username = args.loginInput?.username;
 
     if (username) {
-      user = await this.usersGetService.getByUsernameUsers(username);
+      user = await this.usersGetService.getByUsernameAndCustomers(
+        username
+      );
     }
 
     await this.logsCreateService.createLog({

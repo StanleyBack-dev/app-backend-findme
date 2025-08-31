@@ -21,9 +21,9 @@ export class UsersGetService {
     });
   }
 
-  async getByUsernameAndCustomers(username: string, idtb_customers: string): Promise<User | null> {
+  async getByUsernameAndCustomers(username: string): Promise<User | null> {
     return this.userRepository.findOne({
-      where: { username, idtb_customers },
+      where: { username },
     });
   }
 }

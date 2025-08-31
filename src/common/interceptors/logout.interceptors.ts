@@ -21,8 +21,8 @@ export class LogoutLogInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const gqlCtx = GqlExecutionContext.create(context);
     const req = gqlCtx.getContext().req;
-    const args = gqlCtx.getArgs();
-    const userId = args.logoutInput?.id;
+    const userId = req.user?.id;
+    const tenantId: string | undefined = req.user?.tenantId;
 
     const logMeta = {
       ipAddress: req.ip || req.headers["x-forwarded-for"] || "127.0.0.1",
@@ -35,28 +35,30 @@ export class LogoutLogInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(() => {
         this.handleLog(userId, {
-          action: 'logout_success',
-          description: 'Logout completed successfully',
+          action: "logout_success",
+          description: "Logout completed successfully",
           ...logMeta,
+          tenantId
         });
       }),
-      catchError(err => {
-        return from(this.handleLog(userId, {
-          action: 'logout_error',
-          description: err.message,
-          ...logMeta,
-        })).pipe(
-          switchMap(() => throwError(() => err))
-        );
+      catchError((err) => {
+        return from(
+          this.handleLog(userId, {
+            action: "logout_error",
+            description: err.message,
+            ...logMeta,
+            tenantId,
+          })
+        ).pipe(switchMap(() => throwError(() => err)));
       })
     );
   }
 
-  private async handleLog(userId: number, logData: any) {
+  private async handleLog(userId: string, logData: any) {
     try {
       let user: User | null = null;
-      if (userId) {
-        user = await this.usersGetService.getByIdUsers(userId);
+      if (userId && logData.tenantId) {
+        user = await this.usersGetService.getByIdUsers(userId, logData.tenantId);
       }
 
       await this.logsCreateService.createLog({
@@ -70,7 +72,7 @@ export class LogoutLogInterceptor implements NestInterceptor {
         operationName: logData.operationName,
       });
     } catch (logError) {
-      console.error('Failed to create logout log entry:', logError);
+      console.error("Failed to create logout log entry:", logError);
     }
   }
 }

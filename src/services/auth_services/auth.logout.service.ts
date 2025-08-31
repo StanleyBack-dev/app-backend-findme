@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AuthSessionUser } from 'src/entities/auth_entities/auth.session.entity';
-import { LogoutRequestDto } from 'src/dto/auth_dto/auth_dto_logout/auth.dto.logout.request';
 import { Response } from 'express';
 import { ClearAuthCookies } from 'src/utils/cookies.util';
 
@@ -13,12 +12,10 @@ export class AuthLogoutService {
     private readonly sessionRepository: Repository<AuthSessionUser>,
   ) {}
 
-  async logout(logoutInput: LogoutRequestDto, res: Response): Promise<{ message: string }> {
-    const { id } = logoutInput;
-
+  async logout(userId: string, res: Response): Promise<{ message: string }> {
     const session = await this.sessionRepository.findOne({
       where: {
-        idtb_users: String(id),
+        idtb_users: userId,
         is_revoked: false,
       },
     });

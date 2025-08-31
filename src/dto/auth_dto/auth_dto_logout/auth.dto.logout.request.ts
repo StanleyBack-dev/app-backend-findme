@@ -1,8 +1,9 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Float } from '@nestjs/graphql';
 
 @InputType()
 export class LogoutRequestDto {
 
-  @Field()
-  id: number;
+  @Field(() => Float, { nullable: true })
+  id?: number;
+  
 }
