@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Context } from '@nestjs/graphql';
 import { Throttle } from '@nestjs/throttler';
 import { Response } from 'express';
-import { UseInterceptors } from '@nestjs/common';
+import { UseInterceptors, UseGuards } from '@nestjs/common';
 import { LogoutLogInterceptor } from 'src/common/interceptors/logout.interceptors';
 import { LogoutResponseDto } from 'src/dto/auth_dto/auth_dto_logout/auth.dto.logout.response';
 import { AuthLogoutService } from 'src/services/auth_services/auth.logout.service';

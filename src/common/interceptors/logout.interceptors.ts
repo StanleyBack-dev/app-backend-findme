@@ -21,7 +21,7 @@ export class LogoutLogInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const gqlCtx = GqlExecutionContext.create(context);
     const req = gqlCtx.getContext().req;
-    const userId = req.user?.id;
+    const userId = req.user?.sub;
     const tenantId: string | undefined = req.user?.tenantId;
 
     const logMeta = {

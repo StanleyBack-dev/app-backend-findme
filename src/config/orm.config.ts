@@ -23,7 +23,7 @@ const typeOrmConfig: DataSourceOptions = {
   entities: [User, AuthSessionUser, Logs, Customers, Roles],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: { rejectUnauthorized: false },
 };
 
 export default typeOrmConfig;
