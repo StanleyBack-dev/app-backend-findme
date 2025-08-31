@@ -65,7 +65,7 @@ export class AuthLoginService {
       refreshTokenExpiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     });
 
-    SetAuthCookies(res, refreshToken);
+    SetAuthCookies(res, refreshToken, accessToken);
 
     return {
       accessToken,
