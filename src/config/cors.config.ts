@@ -3,7 +3,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 export const corsConfig: CorsOptions = {
   origin: [
     'http://localhost:3001',
-    `${process.env.URL_PROD_BACKEND}`
+    `${process.env.URL_PROD_FRONTEND}`
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
