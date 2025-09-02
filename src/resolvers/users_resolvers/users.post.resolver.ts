@@ -5,7 +5,8 @@ import { CreateUsersDto } from 'src/dto/users_dto/users_dto_create/users.dto.cre
 
 @Resolver(() => User)
 export class UsersPostResolver {
-  constructor(private readonly usersPostService: UsersPostService) {}
+  constructor(private readonly usersPostService: UsersPostService
+  ) {}
 
   @Mutation(() => User)
   async createUser(@Args('data') data: CreateUsersDto): Promise<User> {

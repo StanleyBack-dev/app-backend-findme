@@ -10,8 +10,8 @@ export function SetAuthCookies(
   // Refresh token (7 dias)
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
-    secure: isProd,          // HTTPS obrigatório em produção
-    sameSite: isProd ? 'none' : 'lax', // cross-site em produção
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax', 
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 

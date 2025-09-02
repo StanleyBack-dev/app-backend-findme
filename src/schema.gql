@@ -77,6 +77,7 @@ type Mutation {
   createUser(data: CreateUsersDto!): User!
   login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
   logout: LogoutResponseDto!
+  createCustomers(data: CreateCustomersDto!): Customers!
 }
 
 input CreateUsersDto {
@@ -92,4 +93,14 @@ input CreateUsersDto {
 input LoginResquestDto {
   username: String!
   password: String!
+}
+
+input CreateCustomersDto {
+  name: String!
+  last_name: String!
+  cpf: String!
+  email: String!
+  contact: String!
+  created_by: String!
+  image: String!
 }
