@@ -1,26 +1,32 @@
 import { Response } from 'express';
-import { cookieOptions } from 'src/config/cookies.config';
 
-export function SetAuthCookies(res: Response, refreshToken: string, accessToken?: string) {
+const isProd = process.env.NODE_ENV === 'production';
 
-  res.cookie("refresh_token", refreshToken, {
+export function SetAuthCookies(
+  res: Response,
+  refreshToken: string,
+  accessToken?: string
+) {
+  // Refresh token (7 dias)
+  res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 dias
-    sameSite: "lax",
+    secure: isProd,          // HTTPS obrigatório em produção
+    sameSite: isProd ? 'none' : 'lax', // cross-site em produção
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
   if (accessToken) {
-
-    res.cookie("access_token", accessToken, {
+    // Access token (15 minutos)
+    res.cookie('access_token', accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 15 * 60 * 1000, // 15 minutos
-      sameSite: "lax",
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
+      maxAge: 15 * 60 * 1000,
     });
   }
 }
 
 export function ClearAuthCookies(res: Response) {
-  res.clearCookie('refresh_token', cookieOptions);
+  res.clearCookie('refresh_token', { httpOnly: true, secure: isProd, sameSite: isProd ? 'none' : 'lax' });
+  res.clearCookie('access_token', { httpOnly: true, secure: isProd, sameSite: isProd ? 'none' : 'lax' });
 }
