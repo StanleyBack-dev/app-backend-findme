@@ -103,8 +103,7 @@ input CreateCustomersDto {
   cpf: String!
   email: String!
   contact: String!
-  created_by: String!
-  image: String!
+  image_url: String
 }
 
 input UpdateCustomersDto {

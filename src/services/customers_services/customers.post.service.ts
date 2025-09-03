@@ -17,7 +17,7 @@ export class CustomersPostService {
     email: string;
     contact: string;
     created_by: string;
-    image: string;
+    image?: string;
   }): Promise<Customers> {
     const customer = this.customersRepository.create(data);
     return this.customersRepository.save(customer);

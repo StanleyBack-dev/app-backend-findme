@@ -17,10 +17,7 @@ export class CreateCustomersDto {
   @Field()
   contact: string;
 
-  @Field()
-  created_by: string;
-
-  @Field()
-  image: string;
+  @Field({nullable: true})
+  image_url: string;
 
 }
