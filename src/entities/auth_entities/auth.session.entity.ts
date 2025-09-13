@@ -11,7 +11,7 @@ export class AuthSessionUser {
 
     @Field(() => String)
     @Column()
-    idtb_users: string;
+    idtb_users: number;
 
     @Field(() => User)
     @ManyToOne(() => User, (user) => user.sessions, { eager: false })

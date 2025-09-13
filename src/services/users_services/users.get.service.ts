@@ -9,13 +9,13 @@ export class UsersGetService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async getAllUsers(tenatId: string): Promise<User[]> {
+  async getAllUsers(tenatId: number): Promise<User[]> {
     return this.userRepository.find({
       where: { idtb_customers: tenatId },
     });
   }
 
-  async getByIdUsers(idtb_users: string, idtb_customers: string): Promise<User | null> {
+  async getByIdUsers(idtb_users: number, idtb_customers: number): Promise<User | null> {
     return this.userRepository.findOne({
       where: { idtb_users, idtb_customers },
     });

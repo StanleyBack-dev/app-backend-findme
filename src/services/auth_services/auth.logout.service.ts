@@ -12,7 +12,7 @@ export class AuthLogoutService {
     private readonly sessionRepository: Repository<AuthSessionUser>,
   ) {}
 
-  async logout(userId: string, res: Response): Promise<{ message: string }> {
+  async logout(userId: number, res: Response): Promise<{ message: string }> {
     const session = await this.sessionRepository.findOne({
       where: {
         idtb_users: userId,

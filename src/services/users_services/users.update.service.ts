@@ -10,7 +10,7 @@ export class UsersUpdateService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async updateLastLogin(userId: string): Promise<void> {
+  async updateLastLogin(userId: number): Promise<void> {
     await this.usersRepository.update(userId, {
       last_login_at: new Date(),
     });

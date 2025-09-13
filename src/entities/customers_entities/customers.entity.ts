@@ -6,7 +6,7 @@ import { Address } from "./address.customers.entity";
 @Entity('tb_customers')
 export class Customers {
   @Field()
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   idtb_customers: string;
 
   @Field()

@@ -3,10 +3,10 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class GetUsersDto {
   @Field()
-  idtb_users: string;
+  idtb_users: number;
 
   @Field()
-  tenantId: string;
+  tenantId: number;
 
   @Field()
   username: string;

@@ -17,15 +17,15 @@ import { AuthSessionUser } from '../auth_entities/auth.session.entity';
 @ObjectType()
 @Entity('tb_users')
 export class User {
-  @Field(() => String)
-  @PrimaryGeneratedColumn('uuid')
-  idtb_users: string;
+  @Field(() => Number)
+  @PrimaryGeneratedColumn()
+  idtb_users: number;
 
   @Column()
-  idtb_customers: string;
+  idtb_customers: number;
 
   @Column()
-  idtb_roles: string;
+  idtb_roles: number;
 
   @Field()
   @Column({ unique: true })

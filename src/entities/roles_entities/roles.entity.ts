@@ -5,7 +5,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 @Entity('tb_roles')
 export class Roles {
   @Field()
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   idtb_roles: string;
 
   @Field()
