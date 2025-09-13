@@ -7,7 +7,7 @@ import { Address } from "./address.customers.entity";
 export class Customers {
   @Field()
   @PrimaryGeneratedColumn()
-  idtb_customers: string;
+  idtb_customers: number;
 
   @Field()
   @Column({ unique: true })

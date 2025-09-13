@@ -21,9 +21,6 @@ export class UpdateUsersDto {
   phone?: string;
 
   @Field({ nullable: true })
-  updated_by?: string;
-
-  @Field({ nullable: true })
   status?: boolean;
 
   @Field({ nullable: true })

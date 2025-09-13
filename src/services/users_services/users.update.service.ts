@@ -36,7 +36,10 @@ export class UsersUpdateService {
       throw new NotFoundException(`Usuário não encontrado`);
     }
 
-    Object.assign(user, data);
+    Object.assign(user, {
+      ...data,
+      updated_by: idtb_users,
+    });
 
     return await this.usersRepository.save(user);
   }

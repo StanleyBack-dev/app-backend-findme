@@ -11,7 +11,8 @@ export class CustomersUpdateService {
   ) {}
 
   async updateCustomers(
-    idtb_customers: string,
+    idtb_customers: number,
+    idtb_users: number,
     data: {
       name?: string;
       last_name?: string;
@@ -29,10 +30,13 @@ export class CustomersUpdateService {
     const customer = await this.customersRepository.findOne({ where: { idtb_customers } });
 
     if (!customer) {
-      throw new NotFoundException(`Cliente com id ${idtb_customers} não encontrado`);
+      throw new NotFoundException(`Cliente encontrado`);
     }
 
-    Object.assign(customer, data);
+    Object.assign(customer, {
+      ...data,
+      updated_by: idtb_users,
+    });
 
     return await this.customersRepository.save(customer);
   }

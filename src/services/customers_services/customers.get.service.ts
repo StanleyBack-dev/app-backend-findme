@@ -9,7 +9,7 @@ export class CustomersGetService {
         @InjectRepository(Customers) private customerRepository: Repository<Customers>,
     ) {}
 
-    async getAllCustomers(tenatId: string):Promise<Customers[]> {
+    async getAllCustomers(tenatId: number):Promise<Customers[]> {
         return this.customerRepository.find({
             where: { idtb_customers: tenatId },
         });

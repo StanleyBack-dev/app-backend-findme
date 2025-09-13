@@ -6,7 +6,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 export class Roles {
   @Field()
   @PrimaryGeneratedColumn()
-  idtb_roles: string;
+  idtb_roles: number;
 
   @Field()
   @Column({ unique: true })

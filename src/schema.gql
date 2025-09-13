@@ -10,7 +10,7 @@ type Address {
 }
 
 type Customers {
-  idtb_customers: String!
+  idtb_customers: Float!
   public_id_customers: String!
   name: String!
   last_name: String!
@@ -34,7 +34,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Roles {
-  idtb_roles: String!
+  idtb_roles: Float!
   name: String!
   description: String
   status: Boolean!
@@ -88,12 +88,13 @@ type Query {
 
 type Mutation {
   createUser(data: CreateUsersDto!): Users!
-  updateUsers(data: UpdateUsersDto!): Users!
+  updateUsers(id: Int!, data: UpdateUsersDto!): Users!
   login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
   logout: LogoutResponseDto!
   createRoles(data: CreateRolesDto!): Roles!
+  updateRoles(id: Int!, data: UpdateRolesDto!): Roles!
   createCustomers(data: CreateCustomersDto!): Customers!
-  updateCustomer(data: UpdateCustomersDto!): Customers!
+  updateCustomer(id: Int!, data: UpdateCustomersDto!): Customers!
   deleteCustomer: Customers!
 }
 
@@ -115,7 +116,6 @@ input UpdateUsersDto {
   cpf: String
   email: String
   phone: String
-  updated_by: String
   status: Boolean
   inactivated_at: DateTime
   inactivated_by: String
@@ -129,6 +129,12 @@ input LoginResquestDto {
 input CreateRolesDto {
   name: String!
   description: String!
+}
+
+input UpdateRolesDto {
+  name: String
+  description: String
+  status: Boolean
 }
 
 input CreateCustomersDto {
