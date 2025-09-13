@@ -2,24 +2,27 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { HashPassword } from "src/utils/hash.util";
-import { User } from "../../entities/users_entities/users.entity";
+import { Users } from "../../entities/users_entities/users.entity";
 
 @Injectable()
 export class UsersPostService {
   constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>
+    @InjectRepository(Users)
+    private userRepository: Repository<Users>
   ) {}
 
   async postUsers(data: {
     username: string;
     password?: string;
+    created_by: string;
+    idtb_customers: number;
+    idtb_roles: number;
     name: string;
     last_name: string;
     cpf: string;
     email: string;
     phone: string;
-  }): Promise<User> {
+  }): Promise<Users> {
     if (data.password) {
       data.password = await HashPassword(data.password);
     }

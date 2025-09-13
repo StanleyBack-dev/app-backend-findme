@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Logs } from 'src/entities/logs_entities/logs.entity';
-import { User } from '../../entities/users_entities/users.entity';
+import { Users } from '../../entities/users_entities/users.entity';
 
 @Injectable()
 export class LogsCreateService {
@@ -12,7 +12,7 @@ export class LogsCreateService {
   ) {}
 
   async createLog(data: {
-    user: User | null; 
+    user: Users | null; 
     action: string;
     description: string;
     ipAddress: string;

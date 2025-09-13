@@ -9,6 +9,9 @@ export class CreateUsersDto {
   password: string;
 
   @Field()
+  idtb_roles: number;
+
+  @Field()
   name: string;
 
   @Field()

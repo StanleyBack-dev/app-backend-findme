@@ -6,7 +6,7 @@ import { UpdateCustomersDto } from 'src/dto/customers_dto/customers_dto_update/c
 @Resolver(() => Customers)
 export class CustomersUpdateResolver {
   constructor(
-    private readonly customersUpdateService: CustomersUpdateService,
+    private readonly customersUpdateService: CustomersUpdateService
   ) {}
 
   @Mutation(() => Customers)

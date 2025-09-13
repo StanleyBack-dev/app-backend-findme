@@ -1,5 +1,5 @@
 import { DataSourceOptions } from 'typeorm';
-import { User } from '../entities/users_entities/users.entity';
+import { Users } from '../entities/users_entities/users.entity';
 import { AuthSessionUser } from 'src/entities/auth_entities/auth.session.entity';
 import { Logs } from 'src/entities/logs_entities/logs.entity';
 import { Roles } from 'src/entities/roles_entities/roles.entity';
@@ -20,7 +20,7 @@ const typeOrmConfig: DataSourceOptions = {
   username: process.env.PGUSER,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
-  entities: [User, AuthSessionUser, Logs, Roles, Customers],
+  entities: [Users, AuthSessionUser, Logs, Roles, Customers],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,

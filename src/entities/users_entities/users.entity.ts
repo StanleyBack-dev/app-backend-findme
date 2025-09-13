@@ -16,7 +16,7 @@ import { AuthSessionUser } from '../auth_entities/auth.session.entity';
 
 @ObjectType()
 @Entity('tb_users')
-export class User {
+export class Users {
   @Field(() => Number)
   @PrimaryGeneratedColumn()
   idtb_users: number;

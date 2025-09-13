@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { User } from '../users_entities/users.entity';
+import { Users } from '../users_entities/users.entity';
 
 @ObjectType()
 @Entity('tb_users_sessions')
@@ -13,10 +13,10 @@ export class AuthSessionUser {
     @Column()
     idtb_users: number;
 
-    @Field(() => User)
-    @ManyToOne(() => User, (user) => user.sessions, { eager: false })
+    @Field(() => Users)
+    @ManyToOne(() => Users, (user) => user.sessions, { eager: false })
     @JoinColumn({ name: 'idtb_users' })
-    user: User;
+    user: Users;
 
     @Field(() => String, { nullable: true })
     @Column({ type: 'text', nullable: true })

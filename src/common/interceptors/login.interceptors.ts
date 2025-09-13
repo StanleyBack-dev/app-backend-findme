@@ -9,7 +9,7 @@ import { Observable, from, throwError } from "rxjs";
 import { tap, catchError, switchMap } from "rxjs/operators";
 import { LogsCreateService } from "src/services/logs_services/logs.create.service";
 import { UsersGetService } from "src/services/users_services/users.get.service";
-import { User } from "src/entities/users_entities/users.entity";
+import { Users } from "src/entities/users_entities/users.entity";
 
 @Injectable()
 export class LogLoginInterceptor implements NestInterceptor {
@@ -61,7 +61,7 @@ export class LogLoginInterceptor implements NestInterceptor {
 
   private async handleLoginError(err: any, args: any, logMeta: any) {
 
-    let user: User | null = null; 
+    let user: Users | null = null; 
     const username = args.loginInput?.username;
 
     if (username) {
