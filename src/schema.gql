@@ -33,6 +33,19 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Roles {
+  idtb_roles: String!
+  name: String!
+  description: String
+  status: Boolean!
+  created_by: String!
+  updated_by: String
+  inactivated_by: String
+  inactivated_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
 type Users {
   idtb_users: Float!
   public_id_users: String!
@@ -78,6 +91,7 @@ type Mutation {
   updateUsers(data: UpdateUsersDto!): Users!
   login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
   logout: LogoutResponseDto!
+  createRoles(data: CreateRolesDto!): Roles!
   createCustomers(data: CreateCustomersDto!): Customers!
   updateCustomer(data: UpdateCustomersDto!): Customers!
   deleteCustomer: Customers!
@@ -110,6 +124,11 @@ input UpdateUsersDto {
 input LoginResquestDto {
   username: String!
   password: String!
+}
+
+input CreateRolesDto {
+  name: String!
+  description: String!
 }
 
 input CreateCustomersDto {
