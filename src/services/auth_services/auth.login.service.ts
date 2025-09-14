@@ -4,7 +4,7 @@ import { ComparePassword } from 'src/utils/hash.util';
 import { SetAuthCookies } from 'src/utils/cookies.util';
 import { LoginResquestDto } from 'src/dto/auth_dto/auth_dto_login/auth.dto.login.request';
 import { GetUsersDto } from 'src/dto/users_dto/users_dto_get/users.dto.get.response';
-import { UsersGetService } from '../users_services/users.get.service';
+import { UsersFindService } from '../users_services/users.find.service';
 import { AuthCreateSessionService } from './auth.create.session.service';
 import { UsersUpdateService } from '../users_services/users.update.service';
 import { Response } from 'express';
@@ -13,7 +13,7 @@ import { Response } from 'express';
 export class AuthLoginService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly usersGetService: UsersGetService,
+    private readonly usersFindService: UsersFindService,
     private readonly authCreateSessionService: AuthCreateSessionService,
     private readonly usersUpdateService: UsersUpdateService,
   ) {}
@@ -27,7 +27,7 @@ export class AuthLoginService {
   ) {
     const { username, password } = loginInput;
 
-    const user = await this.usersGetService.getByUsernameAndCustomers(username);
+    const user = await this.usersFindService.getByUsernameAndCustomers(username);
     if (!user) throw new UnauthorizedException('User not found');
 
     const valid = await ComparePassword(password, user.password);

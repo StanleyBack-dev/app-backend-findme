@@ -8,14 +8,14 @@ import { GqlExecutionContext } from "@nestjs/graphql";
 import { Observable, from, throwError } from "rxjs";
 import { tap, catchError, switchMap } from "rxjs/operators";
 import { LogsCreateService } from "src/services/logs_services/logs.create.service";
-import { UsersGetService } from "src/services/users_services/users.get.service";
+import { UsersFindService } from "src/services/users_services/users.find.service";
 import { Users } from "src/entities/users_entities/users.entity";
 
 @Injectable()
 export class LogoutLogInterceptor implements NestInterceptor {
   constructor(
     private readonly logsCreateService: LogsCreateService,
-    private readonly usersGetService: UsersGetService
+    private readonly usersFindService: UsersFindService
   ) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -58,7 +58,7 @@ export class LogoutLogInterceptor implements NestInterceptor {
     try {
       let user: Users | null = null;
       if (userId && logData.tenantId) {
-        user = await this.usersGetService.getByIdUsers(userId, logData.tenantId);
+        user = await this.usersFindService.getByIdUsers(userId, logData.tenantId);
       }
 
       await this.logsCreateService.createLog({

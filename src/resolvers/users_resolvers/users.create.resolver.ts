@@ -6,7 +6,7 @@ import { CreateUsersDto } from 'src/dto/users_dto/users_dto_create/users.dto.cre
 @Resolver(() => Users)
 export class UsersCreateResolver {
   constructor(
-    private readonly usersPostService: UsersCreateService,
+    private readonly usersCreateService: UsersCreateService,
   ) {}
 
   @Mutation(() => Users)
@@ -17,7 +17,7 @@ export class UsersCreateResolver {
     const userId = context.req.user.sub;
     const tenantId = context.req.user.tenantId;
 
-    return this.usersPostService.execute({
+    return this.usersCreateService.execute({
       ...data,
       created_by: userId,
       idtb_customers: tenantId,

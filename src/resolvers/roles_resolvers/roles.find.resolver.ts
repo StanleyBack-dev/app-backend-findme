@@ -1,15 +1,15 @@
 import { Resolver, Query } from '@nestjs/graphql';
-import { RolesGetService } from 'src/services/roles_services/roles.get.service';
+import { RolesFindService } from 'src/services/roles_services/roles.find.service';
 import { Roles } from 'src/entities/roles_entities/roles.entity';
 
 @Resolver(() => Roles)
-export class RolesGetResolver {
+export class RolesFindResolver {
     constructor(
-        private readonly rolesGetService: RolesGetService
+        private readonly rolesFindService: RolesFindService
     ) {}
 
     @Query(() => [Roles])
     async roles (): Promise<Roles[]>{
-        return this.rolesGetService.getAllRoles();
+        return this.rolesFindService.getAllRoles();
     }
 }

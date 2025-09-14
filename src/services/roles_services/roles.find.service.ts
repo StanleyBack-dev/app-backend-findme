@@ -4,7 +4,7 @@ import { Roles } from "src/entities/roles_entities/roles.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
-export class RolesGetService {
+export class RolesFindService {
     constructor(
         @InjectRepository(Roles)
         private rolesRepository: Repository<Roles>

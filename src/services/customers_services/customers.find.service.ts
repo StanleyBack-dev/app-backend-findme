@@ -4,7 +4,7 @@ import { Customers } from "src/entities/customers_entities/customers.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
-export class CustomersGetService {
+export class CustomersFindService {
     constructor(
         @InjectRepository(Customers) private customerRepository: Repository<Customers>
     ) {}
