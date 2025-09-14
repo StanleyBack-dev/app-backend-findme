@@ -4,13 +4,13 @@ import { Repository } from "typeorm";
 import { Roles } from "src/entities/roles_entities/roles.entity";
 
 @Injectable()
-export class RolesPostService {
+export class RolesCreateService {
     constructor(
         @InjectRepository(Roles)
         private rolesRepository: Repository<Roles>
     ) {}
 
-    async createRoles(data: {
+    async execute(data: {
         name: string;
         description: string;
         created_by: string;

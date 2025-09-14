@@ -92,9 +92,9 @@ type Mutation {
   updateUsers(id: Int!, data: UpdateUsersDto!): Users!
   login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
   logout: LogoutResponseDto!
-  createRoles(data: CreateRolesDto!): Roles!
+  createRole(data: CreateRolesDto!): Roles!
   updateRoles(id: Int!, data: UpdateRolesDto!): Roles!
-  createCustomers(data: CreateCustomersDto!): Customers!
+  createCustomer(data: CreateCustomersDto!): Customers!
   updateCustomer(id: Int!, data: UpdateCustomersDto!): Customers!
   deleteCustomer: Customers!
 }

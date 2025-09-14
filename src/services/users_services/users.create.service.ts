@@ -5,13 +5,13 @@ import { HashPassword } from "src/utils/hash.util";
 import { Users } from "../../entities/users_entities/users.entity";
 
 @Injectable()
-export class UsersPostService {
+export class UsersCreateService {
   constructor(
     @InjectRepository(Users)
     private userRepository: Repository<Users>
   ) {}
 
-  async postUsers(data: {
+  async execute(data: {
     username: string;
     password?: string;
     created_by: string;

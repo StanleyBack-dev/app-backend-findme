@@ -1,12 +1,12 @@
 import { Resolver, Mutation, Args, Context } from '@nestjs/graphql';
-import { UsersPostService } from '../../services/users_services/users.post.service';
+import { UsersCreateService } from '../../services/users_services/users.create.service';
 import { Users } from '../../entities/users_entities/users.entity';
 import { CreateUsersDto } from 'src/dto/users_dto/users_dto_create/users.dto.create.request';
 
 @Resolver(() => Users)
-export class UsersPostResolver {
+export class UsersCreateResolver {
   constructor(
-    private readonly usersPostService: UsersPostService,
+    private readonly usersPostService: UsersCreateService,
   ) {}
 
   @Mutation(() => Users)
@@ -17,7 +17,7 @@ export class UsersPostResolver {
     const userId = context.req.user.sub;
     const tenantId = context.req.user.tenantId;
 
-    return this.usersPostService.postUsers({
+    return this.usersPostService.execute({
       ...data,
       created_by: userId,
       idtb_customers: tenantId,
