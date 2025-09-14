@@ -5,11 +5,13 @@ import { RolesPostResolver } from 'src/resolvers/roles_resolvers/roles.post.reso
 import { RolesPostService } from 'src/services/roles_services/roles.post.service';
 import { RolesUpdateResolver } from 'src/resolvers/roles_resolvers/roles.update.resolver';
 import { RolesUpdateService } from 'src/services/roles_services/roles.update.service';
+import { RolesGetResolver } from 'src/resolvers/roles_resolvers/roles.get.resolver';
+import { RolesGetService } from 'src/services/roles_services/roles.get.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Roles])],
-  providers: [RolesPostResolver, RolesUpdateResolver, RolesPostService, RolesUpdateService],
-  exports: [RolesPostResolver, RolesUpdateResolver, RolesPostService, RolesUpdateService],
+  providers: [RolesPostResolver, RolesUpdateResolver, RolesGetResolver, RolesPostService, RolesUpdateService, RolesGetService],
+  exports: [RolesPostResolver, RolesUpdateResolver, RolesGetResolver, RolesPostService, RolesUpdateService, RolesGetService],
 })
 
 export class RolesModule {}

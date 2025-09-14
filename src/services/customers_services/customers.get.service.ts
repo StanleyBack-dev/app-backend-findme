@@ -6,7 +6,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 @Injectable()
 export class CustomersGetService {
     constructor(
-        @InjectRepository(Customers) private customerRepository: Repository<Customers>,
+        @InjectRepository(Customers) private customerRepository: Repository<Customers>
     ) {}
 
     async getAllCustomers(tenatId: number):Promise<Customers[]> {

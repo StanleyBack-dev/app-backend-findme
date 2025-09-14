@@ -83,6 +83,7 @@ type LogoutResponseDto {
 
 type Query {
   users: [Users!]!
+  roles: [Roles!]!
   customers: [Customers!]!
 }
 
