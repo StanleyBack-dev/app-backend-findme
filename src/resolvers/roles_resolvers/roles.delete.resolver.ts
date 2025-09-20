@@ -6,7 +6,7 @@ import { DeleteRolesInputDto } from 'src/dto/roles_dto/roles_dto_delete/roles.dt
 @Resolver()
 export class RolesDeleteResolver {
   constructor(
-    private readonly rolesDeleteService: RolesDeleteService,
+    private readonly rolesDeleteService: RolesDeleteService
   ) {}
 
   @Mutation(() => DeleteRolesResponseDto)

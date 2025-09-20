@@ -2,8 +2,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ComparePassword } from 'src/utils/hash.util';
 import { SetAuthCookies } from 'src/utils/cookies.util';
-import { LoginResquestDto } from 'src/dto/auth_dto/auth_dto_login/auth.dto.login.request';
-import { GetUsersDto } from 'src/dto/users_dto/users_dto_get/users.dto.get.response';
+import { LoginResquestDto } from 'src/dto/auth_dto/auth_dto_login/auth.dto.login.input';
+import { LoginResponseDto } from 'src/dto/auth_dto/auth_dto_login/auth.dto.login.response';
+import { FindUsersInputDto } from 'src/dto/users_dto/users_dto_find/user.dto.find.input';
 import { UsersFindService } from '../users_services/users.find.service';
 import { AuthCreateSessionService } from './auth.create.session.service';
 import { UsersUpdateService } from '../users_services/users.update.service';
@@ -27,7 +28,7 @@ export class AuthLoginService {
   ) {
     const { username, password } = loginInput;
 
-    const user = await this.usersFindService.getByUsernameAndCustomers(username);
+    const user = await this.usersFindService.getEntityByUsername(username);
     if (!user) throw new UnauthorizedException('User not found');
 
     const valid = await ComparePassword(password, user.password);
@@ -74,7 +75,7 @@ export class AuthLoginService {
         tenantId: user.idtb_customers,
         username: user.username,
         role: user.role,
-      } as GetUsersDto,
-    };
+      } as FindUsersInputDto,
+    } as LoginResponseDto;
   }
 }

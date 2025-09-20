@@ -66,19 +66,53 @@ type Users {
   updated_at: DateTime
 }
 
-type GetUsersDto {
-  idtb_users: Float!
-  tenantId: Float!
+type FindUsersResponseDto {
+  idtb_users: Int!
+  public_id_users: String!
   username: String!
+  name: String!
+  last_name: String!
+  cpf: String!
+  email: String!
+  phone: String!
+  status: Boolean!
+  first_access: Boolean!
+  last_login_at: DateTime
+  created_by: Int!
+  updated_by: Float
+  inactivated_by: Float
+  inactivated_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+type DeleteUsersResponseDto {
+  idtb_users: Int!
+  status: Boolean!
+  inactivated_at: DateTime
+  inactivated_by: Int
 }
 
 type LoginResponseDto {
   accessToken: String!
-  user: GetUsersDto!
+  user: FindUsersResponseDto!
 }
 
 type LogoutResponseDto {
   message: String!
+}
+
+type FindRolesResponseDto {
+  idtb_roles: Int!
+  name: String!
+  description: String
+  status: Boolean!
+  created_by: Int!
+  updated_by: Float
+  inactivated_by: Float
+  inactivated_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
 }
 
 type DeleteRolesResponseDto {
@@ -88,15 +122,64 @@ type DeleteRolesResponseDto {
   inactivated_by: Int
 }
 
+type FindCustomersResponseDto {
+  idtb_customers: Int!
+  public_id_customers: String!
+  name: String!
+  last_name: String!
+  cpf: String!
+  email: String!
+  contact: String!
+  image_url: String
+  address: Address
+  status: Boolean!
+  created_by: Int!
+  updated_by: Float
+  inactivated_by: Float
+  inactivated_at: DateTime
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+type DeleteCustomersResponseDto {
+  idtb_customers: Int!
+  status: Boolean!
+  inactivated_at: DateTime
+  inactivated_by: Int
+}
+
 type Query {
-  users: [Users!]!
-  roles: [Roles!]!
-  customers: [Customers!]!
+  users(filters: FindUsersInputDto): [FindUsersResponseDto!]!
+  roles(filters: FindRolesInputDto): [FindRolesResponseDto!]!
+  customers(filters: FindCustomersInputDto): [FindCustomersResponseDto!]!
+}
+
+input FindUsersInputDto {
+  username: String
+  email: String
+  cpf: String
+  name: String
+  status: Boolean
+  idtb_roles: Int
+}
+
+input FindRolesInputDto {
+  name: String
+  status: Boolean
+}
+
+input FindCustomersInputDto {
+  idtb_customers: Int
+  name: String
+  email: String
+  cpf: String
+  status: Boolean
 }
 
 type Mutation {
   createUser(data: CreateUsersDto!): Users!
   updateUsers(id: Int!, data: UpdateUsersDto!): Users!
+  deleteUsers(data: DeleteUsersInputDto!): DeleteUsersResponseDto!
   login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
   logout: LogoutResponseDto!
   createRole(data: CreateRolesDto!): Roles!
@@ -104,7 +187,7 @@ type Mutation {
   deleteRoles(data: DeleteRolesInputDto!): DeleteRolesResponseDto!
   createCustomer(data: CreateCustomersDto!): Customers!
   updateCustomer(id: Int!, data: UpdateCustomersDto!): Customers!
-  deleteCustomer: Customers!
+  deleteCustomer(data: DeleteCustomersInputDto!): DeleteCustomersResponseDto!
 }
 
 input CreateUsersDto {
@@ -128,6 +211,10 @@ input UpdateUsersDto {
   status: Boolean
   inactivated_at: DateTime
   inactivated_by: Float
+}
+
+input DeleteUsersInputDto {
+  id: Int!
 }
 
 input LoginResquestDto {
@@ -170,4 +257,8 @@ input UpdateCustomersDto {
   image: String
   inactivated_at: DateTime
   inactivated_by: Float
+}
+
+input DeleteCustomersInputDto {
+  id: Int!
 }

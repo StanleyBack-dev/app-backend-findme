@@ -58,9 +58,9 @@ export class LogoutLogInterceptor implements NestInterceptor {
     try {
       let user: Users | null = null;
       if (userId && logData.tenantId) {
-        user = await this.usersFindService.getByIdUsers(userId, logData.tenantId);
+        user = await this.usersFindService.getEntityById(userId, logData.tenantId);
       }
-
+      
       await this.logsCreateService.createLog({
         user: user,
         action: logData.action,

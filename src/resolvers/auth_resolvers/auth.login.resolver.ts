@@ -4,7 +4,7 @@ import { Public } from "src/common/decorators/public.decorator";
 import { UseInterceptors } from "@nestjs/common";
 import { LogLoginInterceptor } from "src/common/interceptors/login.interceptors";
 import { AuthLoginService } from "src/services/auth_services/auth.login.service";
-import { LoginResquestDto } from "src/dto/auth_dto/auth_dto_login/auth.dto.login.request";
+import { LoginResquestDto } from "src/dto/auth_dto/auth_dto_login/auth.dto.login.input";
 import { LoginResponseDto } from "src/dto/auth_dto/auth_dto_login/auth.dto.login.response";
 
 @Resolver()

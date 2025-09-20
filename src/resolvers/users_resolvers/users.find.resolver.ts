@@ -1,15 +1,20 @@
-import { Resolver, Query, Context } from '@nestjs/graphql';
+import { Resolver, Query, Context, Args } from '@nestjs/graphql';
 import { UsersFindService } from 'src/services/users_services/users.find.service';
-import { Users } from 'src/entities/users_entities/users.entity';
+import { FindUsersResponseDto } from 'src/dto/users_dto/users_dto_find/users.dto.find.response';
+import { FindUsersInputDto } from 'src/dto/users_dto/users_dto_find/user.dto.find.input';
 
-@Resolver(() => Users)
+@Resolver(() => FindUsersResponseDto)
 export class UsersFindResolver {
   constructor(private readonly usersFindService: UsersFindService) {}
 
-@Query(() => [Users])
-async users(@Context() context: any): Promise<Users[]> {
-  const tenantId = context.req.user?.tenantId;
-  if (!tenantId) throw new Error('TenantId missing');
-  return this.usersFindService.getAllUsers(tenantId);
-}
+  @Query(() => [FindUsersResponseDto])
+  async users(
+    @Args('filters', { nullable: true }) filters: FindUsersInputDto,
+    @Context() context: any,
+  ): Promise<FindUsersResponseDto[]> {
+    
+    const tenantId = context.req.user?.tenantId;
+
+    return this.usersFindService.getAllUsers(filters || {}, tenantId);
+  }
 }

@@ -1,15 +1,17 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql';
 import { RolesFindService } from 'src/services/roles_services/roles.find.service';
-import { Roles } from 'src/entities/roles_entities/roles.entity';
+import { FindRolesResponseDto } from 'src/dto/roles_dto/roles_dto_find/roles.dto.find.response';
+import { FindRolesInputDto } from 'src/dto/roles_dto/roles_dto_find/roles.dto.find.input';
 
-@Resolver(() => Roles)
+@Resolver(() => FindRolesResponseDto)
 export class RolesFindResolver {
-    constructor(
-        private readonly rolesFindService: RolesFindService
-    ) {}
+  constructor(private readonly rolesFindService: RolesFindService) {}
 
-    @Query(() => [Roles])
-    async roles (): Promise<Roles[]>{
-        return this.rolesFindService.getAllRoles();
-    }
+  @Query(() => [FindRolesResponseDto])
+  async roles(
+    @Args('filters', { nullable: true }) filters: FindRolesInputDto,
+  ): Promise<FindRolesResponseDto[]> {
+    
+    return this.rolesFindService.getAllRoles(filters || {});
+  }
 }
