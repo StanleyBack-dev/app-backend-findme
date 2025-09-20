@@ -13,6 +13,7 @@ import {
 import { Customers } from '../customers_entities/customers.entity';
 import { Roles } from '../roles_entities/roles.entity';
 import { AuthSessionUser } from '../auth_entities/auth.session.entity';
+import { AuthCodes } from '../auth_codes_entities/auth.codes.entity';
 
 @ObjectType()
 @Entity('tb_users')
@@ -104,6 +105,9 @@ export class Users {
 
   @OneToMany(() => AuthSessionUser, (session) => session.user)
   sessions: AuthSessionUser[];
+
+  @OneToMany(() => AuthCodes, (authCode) => authCode.user)
+  authCodes: AuthCodes[];
 
   @BeforeInsert()
   async generatePublicId() {

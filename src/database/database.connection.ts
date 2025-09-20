@@ -4,6 +4,7 @@ import { AuthSessionUser } from 'src/entities/auth_entities/auth.session.entity'
 import { Logs } from 'src/entities/logs_entities/logs.entity';
 import { Roles } from 'src/entities/roles_entities/roles.entity';
 import { Customers } from 'src/entities/customers_entities/customers.entity';
+import { AuthCodes } from 'src/entities/auth_codes_entities/auth.codes.entity';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
@@ -20,7 +21,7 @@ const typeOrmConfig: DataSourceOptions = {
   username: process.env.PGUSER,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
-  entities: [Users, AuthSessionUser, Logs, Roles, Customers],
+  entities: [Users, AuthSessionUser, Logs, Roles, Customers, AuthCodes],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
