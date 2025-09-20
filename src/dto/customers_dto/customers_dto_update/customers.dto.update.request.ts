@@ -18,7 +18,7 @@ export class UpdateCustomersDto {
   contact?: string;
 
   @Field({ nullable: true })
-  updated_by?: string;
+  updated_by?: number;
 
   @Field({ nullable: true })
   status?: boolean;
@@ -30,5 +30,5 @@ export class UpdateCustomersDto {
   inactivated_at?: Date;
 
   @Field({ nullable: true })
-  inactivated_by?: string;
+  inactivated_by?: number;
 }

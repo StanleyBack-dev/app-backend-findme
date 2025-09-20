@@ -47,15 +47,15 @@ export class Customers {
 
   @Field()
   @Column()
-  created_by: string;
+  created_by: number;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  updated_by: string;
+  updated_by: number;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  inactivated_by: string;
+  inactivated_by: number;
 
   @Field({ nullable: true })
   @Column({ nullable: true })

@@ -16,7 +16,7 @@ export class CustomersCreateService {
     cpf: string;
     email: string;
     contact: string;
-    created_by: string;
+    created_by: number;
     image?: string;
   }): Promise<Customers> {
     const customer = this.customersRepository.create(data);

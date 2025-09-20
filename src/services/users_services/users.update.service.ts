@@ -22,11 +22,11 @@ export class UsersUpdateService {
       cpf?: string;
       email?: string;
       phone?: string;
-      updated_by?: string;
+      updated_by?: number;
       first_access?: boolean; 
       status?: boolean;
       inactivated_at?: Date;
-      inactivated_by?: string;
+      inactivated_by?: number;
     }
   ): Promise<Users> {
 

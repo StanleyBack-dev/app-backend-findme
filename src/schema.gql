@@ -20,9 +20,9 @@ type Customers {
   image_url: String
   address: Address
   status: Boolean!
-  created_by: String!
-  updated_by: String
-  inactivated_by: String
+  created_by: Float!
+  updated_by: Float
+  inactivated_by: Float
   inactivated_at: DateTime
   created_at: DateTime!
   updated_at: DateTime
@@ -38,9 +38,9 @@ type Roles {
   name: String!
   description: String
   status: Boolean!
-  created_by: String!
-  updated_by: String
-  inactivated_by: String
+  created_by: Float!
+  updated_by: Float
+  inactivated_by: Float
   inactivated_at: DateTime
   created_at: DateTime!
   updated_at: DateTime
@@ -58,9 +58,9 @@ type Users {
   status: Boolean!
   first_access: Boolean!
   last_login_at: DateTime
-  created_by: String!
-  updated_by: String
-  inactivated_by: String
+  created_by: Float!
+  updated_by: Float
+  inactivated_by: Float
   inactivated_at: DateTime
   created_at: DateTime!
   updated_at: DateTime
@@ -81,6 +81,13 @@ type LogoutResponseDto {
   message: String!
 }
 
+type DeleteRolesResponseDto {
+  idtb_roles: Int!
+  status: Boolean!
+  inactivated_at: DateTime
+  inactivated_by: Int
+}
+
 type Query {
   users: [Users!]!
   roles: [Roles!]!
@@ -94,6 +101,7 @@ type Mutation {
   logout: LogoutResponseDto!
   createRole(data: CreateRolesDto!): Roles!
   updateRoles(id: Int!, data: UpdateRolesDto!): Roles!
+  deleteRoles(data: DeleteRolesInputDto!): DeleteRolesResponseDto!
   createCustomer(data: CreateCustomersDto!): Customers!
   updateCustomer(id: Int!, data: UpdateCustomersDto!): Customers!
   deleteCustomer: Customers!
@@ -119,7 +127,7 @@ input UpdateUsersDto {
   phone: String
   status: Boolean
   inactivated_at: DateTime
-  inactivated_by: String
+  inactivated_by: Float
 }
 
 input LoginResquestDto {
@@ -138,6 +146,10 @@ input UpdateRolesDto {
   status: Boolean
 }
 
+input DeleteRolesInputDto {
+  id: Int!
+}
+
 input CreateCustomersDto {
   name: String!
   last_name: String!
@@ -153,9 +165,9 @@ input UpdateCustomersDto {
   cpf: String
   email: String
   contact: String
-  updated_by: String
+  updated_by: Float
   status: Boolean
   image: String
   inactivated_at: DateTime
-  inactivated_by: String
+  inactivated_by: Float
 }

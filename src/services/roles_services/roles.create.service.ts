@@ -13,7 +13,7 @@ export class RolesCreateService {
     async execute(data: {
         name: string;
         description: string;
-        created_by: string;
+        created_by: number;
     }): Promise<Roles> {
         const roles = this.rolesRepository.create(data);
         return this.rolesRepository.save(roles);

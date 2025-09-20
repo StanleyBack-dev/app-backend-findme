@@ -5,7 +5,7 @@ import { CustomersDeleteService } from 'src/services/customers_services/customer
 @Resolver(() => Customers)
 export class CustomersDeleteResolver {
   constructor(
-    private readonly customersDeleteService: CustomersDeleteService,
+    private readonly customersDeleteService: CustomersDeleteService
   ) {}
 
   @Mutation(() => Customers)

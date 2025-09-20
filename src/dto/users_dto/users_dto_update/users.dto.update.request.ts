@@ -27,5 +27,5 @@ export class UpdateUsersDto {
   inactivated_at?: Date;
 
   @Field({ nullable: true })
-  inactivated_by?: string;
+  inactivated_by?: number;
 }

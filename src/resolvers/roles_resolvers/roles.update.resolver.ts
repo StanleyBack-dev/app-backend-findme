@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Args, Context, Int} from '@nestjs/graphql';
 import { Roles } from 'src/entities/roles_entities/roles.entity';
 import { RolesUpdateService } from 'src/services/roles_services/roles.update.service';
-import { UpdateRolesDto } from 'src/dto/roles_dto/roles_dto_update/roles.dto.update.request';
+import { UpdateRolesDto } from 'src/dto/roles_dto/roles_dto_update/roles.dto.update.input';
 
 @Resolver(() => Roles)
 export class RolesUpdateResolver {

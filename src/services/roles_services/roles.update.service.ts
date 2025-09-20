@@ -17,9 +17,9 @@ export class RolesUpdateService {
       name?: string;
       description?: string;
       status?: boolean;
-      updated_by?: string;
+      updated_by?: number;
       inactivated_at?: Date;
-      inactivated_by?: string;
+      inactivated_by?: number;
     }
   ): Promise<Roles> {
     const roles = await this.rolesRepository.findOne({ where: { idtb_roles } });

@@ -14,7 +14,7 @@ export class UsersCreateService {
   async execute(data: {
     username: string;
     password?: string;
-    created_by: string;
+    created_by: number;
     idtb_customers: number;
     idtb_roles: number;
     name: string;

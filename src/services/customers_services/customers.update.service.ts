@@ -19,11 +19,11 @@ export class CustomersUpdateService {
       cpf?: string;
       email?: string;
       contact?: string;
-      updated_by?: string;
+      updated_by?: number;
       status?: boolean;
       image?: string;
       inactivated_at?: Date;
-      inactivated_by?: string;
+      inactivated_by?: number;
     }
   ): Promise<Customers> {
 

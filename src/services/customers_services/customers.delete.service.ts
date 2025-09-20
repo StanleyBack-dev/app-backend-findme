@@ -7,17 +7,17 @@ import { Customers } from "src/entities/customers_entities/customers.entity";
 export class CustomersDeleteService {
   constructor(
     @InjectRepository(Customers)
-    private customersRepository: Repository<Customers>,
+    private customersRepository: Repository<Customers>
   ) {}
 
-  async deleteCustomers(idtb_customers: number, inactivated_by: string): Promise<Customers> {
+  async deleteCustomers(idtb_customers: number, inactivated_by: number): Promise<Customers> {
     
     const customer = await this.customersRepository.findOne({
-      where: { idtb_customers },
+      where: { idtb_customers }
     });
 
     if (!customer) {
-      throw new NotFoundException(`Cliente não encontrado`);
+      throw new NotFoundException('Cliente não encontrado');
     }
 
     customer.status = false;
