@@ -7,11 +7,11 @@ import { APP_GUARD } from "@nestjs/core";
 import { GqlThrottlerGuard } from "src/config/limit.request.config";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { join } from "path";
-import { UsersModule } from "./users_modules/users.module";
-import { AuthModule } from "./auth_modules/auth.module";
-import { LogsModule } from "./logs_modules/logs.module";
-import { RolesModule } from "./roles_modules/roles.module";
-import { CustomersModule } from "./customers_modules/customers.module";
+import { UsersModule } from "./users/users.module";
+import { AuthModule } from "./auth/auth.module";
+import { LogsModule } from "./logs/logs.module";
+import { RolesModule } from "./roles/roles.module";
+import { CustomersModule } from "./customers/customers.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { JwtAuthGuard } from "src/guards/jwt.auth.guards";
 

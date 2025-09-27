@@ -9,7 +9,7 @@ import { GqlExecutionContext } from "@nestjs/graphql";
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "src/common/decorators/public.decorator";
 import { ConfigService } from "@nestjs/config";
-import { LogsCreateService } from "src/services/logs_services/logs.create.service";
+import { LogsCreateService } from "src/services/logs/service.logs.create";
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {

@@ -7,9 +7,9 @@ import {
 import { GqlExecutionContext } from "@nestjs/graphql";
 import { Observable, from, throwError } from "rxjs";
 import { tap, catchError, switchMap } from "rxjs/operators";
-import { LogsCreateService } from "src/services/logs_services/logs.create.service";
-import { UsersFindService } from "src/services/users_services/users.find.service";
-import { Users } from "src/entities/users_entities/users.entity";
+import { LogsCreateService } from "src/services/logs/service.logs.create";
+import { UsersFindService } from "src/services/users/service.users.find";
+import { Users } from "src/entities/users/users.entity";
 
 @Injectable()
 export class LogoutLogInterceptor implements NestInterceptor {

@@ -1,0 +1,23 @@
+import { InputType, Field } from '@nestjs/graphql';
+
+@InputType()
+export class DtoCustomersCreateInput {
+  @Field()
+  name: string;
+
+  @Field()
+  last_name: string;
+
+  @Field()
+  cpf: string;
+
+  @Field()
+  email: string;
+
+  @Field()
+  contact: string;
+
+  @Field({nullable: true})
+  image_url: string;
+
+}

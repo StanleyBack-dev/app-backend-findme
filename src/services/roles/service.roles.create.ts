@@ -1,0 +1,21 @@
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Roles } from "src/entities/roles/roles.entity";
+
+@Injectable()
+export class RolesCreateService {
+    constructor(
+        @InjectRepository(Roles)
+        private rolesRepository: Repository<Roles>
+    ) {}
+
+    async execute(data: {
+        name: string;
+        description: string;
+        created_by: number;
+    }): Promise<Roles> {
+        const roles = this.rolesRepository.create(data);
+        return this.rolesRepository.save(roles);
+    }
+}

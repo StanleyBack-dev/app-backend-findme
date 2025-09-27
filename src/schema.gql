@@ -66,7 +66,7 @@ type Users {
   updated_at: DateTime
 }
 
-type FindUsersResponseDto {
+type DtoUsersFindResponse {
   idtb_users: Int!
   public_id_users: String!
   username: String!
@@ -86,23 +86,23 @@ type FindUsersResponseDto {
   updated_at: DateTime
 }
 
-type DeleteUsersResponseDto {
+type DtoUsersDeleteResponse {
   idtb_users: Int!
   status: Boolean!
   inactivated_at: DateTime
   inactivated_by: Int
 }
 
-type LoginResponseDto {
+type DtoAuthLoginResponse {
   accessToken: String!
-  user: FindUsersResponseDto!
+  user: DtoUsersFindResponse!
 }
 
-type LogoutResponseDto {
+type DtoAuthLogoutResponse {
   message: String!
 }
 
-type FindRolesResponseDto {
+type DtoRolesFindResponse {
   idtb_roles: Int!
   name: String!
   description: String
@@ -115,14 +115,14 @@ type FindRolesResponseDto {
   updated_at: DateTime
 }
 
-type DeleteRolesResponseDto {
+type DtoRolesDeleteResponse {
   idtb_roles: Int!
   status: Boolean!
   inactivated_at: DateTime
   inactivated_by: Int
 }
 
-type FindCustomersResponseDto {
+type DtoCustomersFindResponse {
   idtb_customers: Int!
   public_id_customers: String!
   name: String!
@@ -141,7 +141,7 @@ type FindCustomersResponseDto {
   updated_at: DateTime
 }
 
-type DeleteCustomersResponseDto {
+type DtoCustomersDeleteResponse {
   idtb_customers: Int!
   status: Boolean!
   inactivated_at: DateTime
@@ -149,12 +149,12 @@ type DeleteCustomersResponseDto {
 }
 
 type Query {
-  users(filters: FindUsersInputDto): [FindUsersResponseDto!]!
-  roles(filters: FindRolesInputDto): [FindRolesResponseDto!]!
-  customers(filters: FindCustomersInputDto): [FindCustomersResponseDto!]!
+  users(filters: DtoUsersFindInput): [DtoUsersFindResponse!]!
+  roles(filters: DtoRolesFindInput): [DtoRolesFindResponse!]!
+  customers(filters: DtoCustomersFindInput): [DtoCustomersFindResponse!]!
 }
 
-input FindUsersInputDto {
+input DtoUsersFindInput {
   username: String
   email: String
   cpf: String
@@ -163,12 +163,12 @@ input FindUsersInputDto {
   idtb_roles: Int
 }
 
-input FindRolesInputDto {
+input DtoRolesFindInput {
   name: String
   status: Boolean
 }
 
-input FindCustomersInputDto {
+input DtoCustomersFindInput {
   idtb_customers: Int
   name: String
   email: String
@@ -177,20 +177,20 @@ input FindCustomersInputDto {
 }
 
 type Mutation {
-  createUser(data: CreateUsersDto!): Users!
-  updateUsers(id: Int!, data: UpdateUsersDto!): Users!
-  deleteUsers(data: DeleteUsersInputDto!): DeleteUsersResponseDto!
-  login(loginInput: LoginResquestDto!, deviceName: String!): LoginResponseDto!
-  logout: LogoutResponseDto!
-  createRole(data: CreateRolesDto!): Roles!
-  updateRoles(id: Int!, data: UpdateRolesDto!): Roles!
-  deleteRoles(data: DeleteRolesInputDto!): DeleteRolesResponseDto!
-  createCustomer(data: CreateCustomersDto!): Customers!
-  updateCustomer(id: Int!, data: UpdateCustomersDto!): Customers!
-  deleteCustomer(data: DeleteCustomersInputDto!): DeleteCustomersResponseDto!
+  createUser(data: DtoUsersCreateInput!): Users!
+  updateUsers(id: Int!, data: DtoUsersUpdateInput!): Users!
+  deleteUsers(data: DtoUsersDeleteInput!): DtoUsersDeleteResponse!
+  login(loginInput: DtoAuthLoginInput!, deviceName: String!): DtoAuthLoginResponse!
+  logout: DtoAuthLogoutResponse!
+  createRole(data: DtoRolesCreateInput!): Roles!
+  updateRoles(id: Int!, data: DtoRolesUpdateInput!): Roles!
+  deleteRoles(data: DtoRolesDeleteInput!): DtoRolesDeleteResponse!
+  createCustomer(data: DtoCustomersCreateInput!): Customers!
+  updateCustomer(id: Int!, data: DtoCustomersUpdateInput!): Customers!
+  deleteCustomer(data: DtoCustomersDeleteInput!): DtoCustomersDeleteResponse!
 }
 
-input CreateUsersDto {
+input DtoUsersCreateInput {
   username: String!
   password: String
   idtb_roles: Float!
@@ -201,7 +201,7 @@ input CreateUsersDto {
   phone: String!
 }
 
-input UpdateUsersDto {
+input DtoUsersUpdateInput {
   name: String
   last_name: String
   username: String
@@ -213,31 +213,31 @@ input UpdateUsersDto {
   inactivated_by: Float
 }
 
-input DeleteUsersInputDto {
+input DtoUsersDeleteInput {
   id: Int!
 }
 
-input LoginResquestDto {
+input DtoAuthLoginInput {
   username: String!
   password: String!
 }
 
-input CreateRolesDto {
+input DtoRolesCreateInput {
   name: String!
   description: String!
 }
 
-input UpdateRolesDto {
+input DtoRolesUpdateInput {
   name: String
   description: String
   status: Boolean
 }
 
-input DeleteRolesInputDto {
+input DtoRolesDeleteInput {
   id: Int!
 }
 
-input CreateCustomersDto {
+input DtoCustomersCreateInput {
   name: String!
   last_name: String!
   cpf: String!
@@ -246,7 +246,7 @@ input CreateCustomersDto {
   image_url: String
 }
 
-input UpdateCustomersDto {
+input DtoCustomersUpdateInput {
   name: String
   last_name: String
   cpf: String
@@ -259,6 +259,6 @@ input UpdateCustomersDto {
   inactivated_by: Float
 }
 
-input DeleteCustomersInputDto {
+input DtoCustomersDeleteInput {
   id: Int!
 }

@@ -1,10 +1,10 @@
 import { DataSourceOptions } from 'typeorm';
-import { Users } from '../entities/users_entities/users.entity';
-import { AuthSessionUser } from 'src/entities/auth_entities/auth.session.entity';
-import { Logs } from 'src/entities/logs_entities/logs.entity';
-import { Customers } from 'src/entities/customers_entities/customers.entity';
-import { Roles } from 'src/entities/roles_entities/roles.entity';
-import { AuthCodes } from 'src/entities/auth_codes_entities/auth.codes.entity';
+import { Users } from '../entities/users/users.entity';
+import { AuthSessionUser } from 'src/entities/auth/auth.session.entity';
+import { Logs } from 'src/entities/logs/logs.entity';
+import { Customers } from 'src/entities/customers/customers.entity';
+import { Roles } from 'src/entities/roles/roles.entity';
+import { AuthCodes } from 'src/entities/auth_codes/auth.codes.entity';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
